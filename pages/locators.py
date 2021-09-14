@@ -1,5 +1,9 @@
 ﻿from selenium.webdriver.common.by import By
 
+class BasePageLocators():
+	LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+	LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
 class MainPageLocators():
 	#ссылка на страницу авториазции
 	LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -26,4 +30,7 @@ class ProductPageLocators():
 	
 	# Цена добавленной книги в корзину
 	BOOK_PRICE_ADD_TO_BASKET = (By.CSS_SELECTOR, "#messages .alert-info strong")
+	
+	# Название добавленной книги в корзину
+	SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert-success:first-child")
 #
