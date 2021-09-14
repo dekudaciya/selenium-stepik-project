@@ -22,6 +22,11 @@ class BasePage():
 			return None
 		return elm.text
 	
+	# переход на страницу корзины
+	def go_to_basket_page(self):
+		link = self.browser.find_element(*BasePageLocators.HEAD_BASKET_LINK)
+		link.click()
+	
 	# переход на страницу авторизации
 	def go_to_login_page(self):
 		link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)

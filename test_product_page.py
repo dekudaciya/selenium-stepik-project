@@ -1,4 +1,5 @@
 ﻿from pages.product_page import ProductPage
+from pages.basket_page import BasketPage
 import time
 import pytest
 
@@ -102,15 +103,31 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
 	# Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 	page.should_disappeared_success_message()
 
+@pytest.mark.skip
 def test_guest_should_see_login_link_on_product_page(browser):
 	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 	page = ProductPage(browser, link)
 	page.open()
 	page.should_be_login_link()
 
+@pytest.mark.skip
 def test_guest_can_go_to_login_page_from_product_page(browser):
 	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 	page = ProductPage(browser, link)
 	page.open()
 	page.go_to_login_page()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+	# Гость открывает страницу товара
+	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+	page = ProductPage(browser, link)
+	page.open()
+	# Переходит в корзину по кнопке в шапке 
+	page.go_to_basket_page()
+	# инициализируем страницу корзины
+	basket_page = BasketPage(browser, browser.current_url)
+	# Ожидаем, что в корзине нет товаров
+	assert basket_page.get_count_books_of_basket() == 0, "There is an item in the basket"
+	# Ожидаем, что есть текст о том что корзина пуста 
+	basket_page.should_be_text_about_empty()
 #
