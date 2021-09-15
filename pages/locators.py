@@ -7,6 +7,8 @@ class BasePageLocators():
 	LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
 	# ссылка на корзину из шапки сайта
 	HEAD_BASKET_LINK = (By.CSS_SELECTOR, ".basket-mini a.btn-default")
+	# иконка пользователя
+	USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 class BasketPageLocators():
 	# текст о пустоте корзины
@@ -16,14 +18,22 @@ class BasketPageLocators():
 	
 
 class MainPageLocators():
-	#ссылка на страницу авториазции
+	# ссылка на страницу авториазции
 	LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 class LoginPageLocators():
-	#форма для регистрации
+	# форма для регистрации
 	REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
-	#форма для авторизации
+	# форма для авторизации
 	LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
+	# поле "Адрес электронной почты"
+	REGISTER_FORM_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
+	# поле "Пароль"
+	REGISTER_FORM_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1")
+	# поле "Повторите пароль"
+	REGISTER_FORM_PASSWORD2 = (By.CSS_SELECTOR, "#id_registration-password2")
+	# кнопка "Зарегистрироваться"
+	REGISTER_FORM_BUTTON = (By.NAME, "registration_submit")
 
 class ProductPageLocators():
 	# Название книги
