@@ -14,11 +14,7 @@ def test_guest_can_go_to_login_page(browser):
 	# открываем страницу
 	page.open()
 	
-	# выполняем метод страницы — переходим на страницу логина
-	#login_page = page.go_to_login_page()
-	#проверяем страницу авторизации
-	#login_page.should_be_login_page()
-	
+	# выполняем метод страницы — переходим на страницу логина	
 	page.go_to_login_page()
 	
 	login_page = LoginPage(browser, browser.current_url)
@@ -46,25 +42,13 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
 	basket_page = BasketPage(browser, browser.current_url)
 	
 	# Ожидаем, что в корзине нет товаров
-	assert basket_page.get_count_books_of_basket() == 0, "There is an item in the basket"
+	basket_page.should_see_empty_basket()
 	
 	# Ожидаем, что есть текст о том что корзина пуста 
 	basket_page.should_be_text_about_empty()
 
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
-
-# Пример оздания нового товара в нашем интернет-магазине перед тестом и удаление по завершении теста
-#	@pytest.fixture(scope="function", autouse=True)
-#	def setup(self):
-#		self.product = ProductFactory(title = "Best book created by robot")
-#		# создаем по апи
-#		self.link = self.product.link
-#		yield
-#		# после этого ключевого слова начинается teardown
-#		# выполнится после каждого теста в классе
-#		# удаляем те данные, которые мы создали 
-#		self.product.delete()
 	
 	def test_guest_can_go_to_login_page(self, browser):
 			
@@ -74,11 +58,7 @@ class TestLoginFromMainPage():
 		# открываем страницу
 		page.open()
 		
-		# выполняем метод страницы — переходим на страницу логина
-		#login_page = page.go_to_login_page()
-		#проверяем страницу авторизации
-		#login_page.should_be_login_page()
-		
+		# выполняем метод страницы — переходим на страницу логина		
 		page.go_to_login_page()
 		
 		login_page = LoginPage(browser, browser.current_url)

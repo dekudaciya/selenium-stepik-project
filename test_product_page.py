@@ -20,7 +20,8 @@ promo = [
 	"promo=offer9"
 ]
 
-@pytest.mark.skip
+#@pytest.mark.skip
+@pytest.mark.need_review
 @pytest.mark.parametrize('promo_link', promo)
 def test_guest_can_add_product_to_basket(browser, promo_link):
 #def test_guest_can_add_product_to_basket(browser):
@@ -111,14 +112,16 @@ def test_guest_should_see_login_link_on_product_page(browser):
 	page.open()
 	page.should_be_login_link()
 
-@pytest.mark.skip
+#@pytest.mark.skip
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
 	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 	page = ProductPage(browser, link)
 	page.open()
 	page.go_to_login_page()
 
-@pytest.mark.skip
+#@pytest.mark.skip
+@pytest.mark.need_review2
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 	# Гость открывает страницу товара
 	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
@@ -129,7 +132,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 	# инициализируем страницу корзины
 	basket_page = BasketPage(browser, browser.current_url)
 	# Ожидаем, что в корзине нет товаров
-	assert basket_page.get_count_books_of_basket() == 0, "There is an item in the basket"
+	basket_page.should_see_empty_basket()
 	# Ожидаем, что есть текст о том что корзина пуста 
 	basket_page.should_be_text_about_empty()
 
@@ -156,6 +159,7 @@ class TestUserAddToBasketFromProductPage():
 		# Проверяем, что нет сообщения об успехе с помощью is_not_element_present
 		page.should_not_be_success_message()
 	
+	@pytest.mark.need_review
 	def test_user_can_add_product_to_basket(self, browser):
 		# инициализируем Page Object
 		page = ProductPage(browser, link)

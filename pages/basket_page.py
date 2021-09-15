@@ -15,6 +15,10 @@ class BasketPage(BasePage):
 		except (NoSuchElementException):
 			return 0
 		return len(elm)
+
+	# проверка, что нет элементов в корзине
+	def should_see_empty_basket(self):
+		assert self.get_count_books_of_basket() == 0, "There is an item in the basket"
 	
 	def should_be_not_text_about_empty(self):
 		assert self.is_not_element_present(*BasketPageLocators.EMPTY_TEXT), "Text of empty basket is presented"
